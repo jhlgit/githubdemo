@@ -3,7 +3,7 @@
  * @author jhl
  * @create Nov 25, 201810:36:17 AM
  */
-package temp.dto;
+package com.jhl.temp.dto;
 
 /**
  * @description 

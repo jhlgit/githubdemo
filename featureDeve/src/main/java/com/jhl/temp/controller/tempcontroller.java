@@ -1,8 +1,10 @@
-package temp.controller;
+package com.jhl.temp.controller;
 
 
-import temp.dto.Car;
-import temp.dto.NoFiled;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import com.jhl.temp.dto.Car;
+import com.jhl.temp.dto.NoFiled;
 
 /**
  * @description 
@@ -10,7 +12,7 @@ import temp.dto.NoFiled;
  * @create 2018年8月28日下午10:31:58
  */
 @Controller
-@RequestMapping("")
+@RequestMapping("tempcontroller")
 public class tempcontroller {
     private String name;
 
@@ -20,7 +22,7 @@ public class tempcontroller {
      * @author jhl
      * @create 2018年8月28日下午10:32:03
      */
-    @interface
+//    @interface
     public Car fast(){
         Car car = new Car();
         NoFiled noFiled=new NoFiled();

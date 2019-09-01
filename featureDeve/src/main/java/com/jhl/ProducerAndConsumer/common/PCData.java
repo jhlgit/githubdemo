@@ -1,4 +1,4 @@
-package ProducerAndConsumer.common;
+package com.jhl.ProducerAndConsumer.common;
 
 /**
  * Created by Administrator on 2019/3/27.

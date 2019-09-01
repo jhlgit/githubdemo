@@ -1,7 +1,7 @@
-package ProducerAndConsumer.queue;
+package com.jhl.ProducerAndConsumer.queue;
 
-import ProducerAndConsumer.common.PCData;
-import ProducerAndConsumer.common.ToolUtil;
+import com.jhl.ProducerAndConsumer.common.PCData;
+import com.jhl.ProducerAndConsumer.common.ToolUtil;
 
 import java.util.LinkedList;
 

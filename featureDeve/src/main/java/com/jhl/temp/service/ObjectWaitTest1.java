@@ -3,13 +3,11 @@
  * @author jhl
  * @create Nov 25, 20188:51:04 PM
  */
-package temp.service;
+package com.jhl.temp.service;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.nio.ByteBuffer;
 
 
 /**
