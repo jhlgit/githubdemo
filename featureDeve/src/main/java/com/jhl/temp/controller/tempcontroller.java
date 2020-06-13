@@ -3,8 +3,8 @@ package com.jhl.temp.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.jhl.temp.dto.Car;
-import com.jhl.temp.dto.NoFiled;
+import com.jhl.DTO.Car;
+import com.jhl.DTO.NoFiled;
 
 /**
  * @description 
