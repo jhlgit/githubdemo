@@ -1,6 +1,6 @@
-package com.jhl.temp.service;
+package com.jhl.service;
 
-import com.jhl.temp.dto.Person;
+import com.jhl.entity.dto.Person;
 
 public interface CheckPerson {
     boolean test(Person person);

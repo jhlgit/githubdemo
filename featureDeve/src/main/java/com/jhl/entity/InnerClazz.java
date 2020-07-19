@@ -1,4 +1,4 @@
-package com.jhl.temp.dto;
+package com.jhl.entity;
 
 import org.springframework.core.convert.converter.Converter;
 

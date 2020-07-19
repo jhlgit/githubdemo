@@ -1,10 +1,10 @@
-package com.jhl.temp.controller;
+package com.jhl.controller;
 
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.jhl.DTO.Car;
-import com.jhl.DTO.NoFiled;
+import com.jhl.entity.Car;
+import com.jhl.entity.NoFiled;
 
 /**
  * @description 

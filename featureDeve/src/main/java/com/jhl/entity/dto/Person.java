@@ -1,9 +1,8 @@
-package com.jhl.temp.dto;
+package com.jhl.entity.dto;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class Person {
@@ -48,18 +47,7 @@ public class Person {
         }
     }
 
-    public static void processPersonsWithFunction(
-            List<Person> roster,
-            Predicate<Person> tester,
-            Function<Person, String> mapper,
-            Consumer<String> block) {
-        for (Person p : roster) {
-            if (tester.test(p)) {
-                String data = mapper.apply(p);
-                block.accept(data);
-            }
-        }
-    }
+
 
     public static void main(String[] args) {
         List<Person> roster = new ArrayList<>();
@@ -81,11 +69,7 @@ public class Person {
 //                a -> a.getGender() == Sex.MAL
 //        );
 
-        Person.processPersonsWithFunction(roster,
-                p -> p.getGender() == Sex.MAL && p.getAge() > 3,
-                p -> p.getEmailAddress(),
-                p -> System.out.println(p)
-        );
+
 
 
     }

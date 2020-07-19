@@ -1,6 +1,6 @@
 package com.jhl.controller;
 
-import com.jhl.DTO.Car;
+import com.jhl.entity.Car;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

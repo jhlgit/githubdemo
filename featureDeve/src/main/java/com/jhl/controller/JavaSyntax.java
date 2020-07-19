@@ -1,7 +1,7 @@
-package com.jhl.temp.controller;
+package com.jhl.controller;
 
 
-import com.jhl.DTO.Car;
+import com.jhl.entity.Car;
 
 public class JavaSyntax {
     public void tempFunction() {
