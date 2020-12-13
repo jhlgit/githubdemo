@@ -1,6 +1,7 @@
 package com.jhl.controller;
 
 import com.jhl.entity.Car;
+import com.jhl.entity.podo.Operation;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,6 +25,14 @@ public class UserController {
         s.hashCode();
         objectArrayList.add(car);
         return objectArrayList;
+    }
+    public static void main(String[] args) {
+        ArrayList<Operation> list = new ArrayList<Operation>();
+        System.out.println(list.size());
+        list=null;
+        for (Operation operation : list) {
+            System.out.println(operation);
+        }
     }
 }
 
