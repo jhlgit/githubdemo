@@ -7,7 +7,7 @@ import com.jhl.entity.Car;
 import com.jhl.entity.NoFiled;
 
 /**
- * @description 
+ * @description
  * @author jhl
  * @create 2018年8月28日下午10:31:58
  */
@@ -16,9 +16,9 @@ import com.jhl.entity.NoFiled;
 public class tempcontroller {
     private String name;
 
-    
+
     /**
-     * @description 
+     * @description
      * @author jhl
      * @create 2018年8月28日下午10:32:03
      */
@@ -40,7 +40,7 @@ public class tempcontroller {
         tempcontroller tempcontroller= new tempcontroller();
         try {
 //            tempcontroller.fast();
-            tempcontroller.commonAddress();
+//            tempcontroller.commonAddress();
         } catch (Exception e) {
             // TODO Auto-generated catch block
 //            e.printStackTrace();
