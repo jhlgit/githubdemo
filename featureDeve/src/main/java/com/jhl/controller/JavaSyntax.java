@@ -20,7 +20,7 @@ public class JavaSyntax extends BaseDeve {
 //        System.out.println("abcd".length());
 //        Car car = new Car();
 //        System.out.println(car.hashCode());
-//        car.setBrand("vvv");
+//        car.setBrand("vvvqq");
 //        String str1 = new String("aa2aa");
 //        String str2 = new String("aa2aa");
 //        System.out.println(str1 == str2);
