@@ -10,6 +10,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
@@ -54,4 +55,11 @@ public class transactionTests extends BaseJunit4Test {
         int insert = operationMapper.insert(operation);
     }
 
+    public static void main(String[] args) {
+        ArrayList<Operation> list = new ArrayList<Operation>();
+        list=null;
+        for (Operation operation : list) {
+            System.out.println(operation);
+        }
+    }
 }
