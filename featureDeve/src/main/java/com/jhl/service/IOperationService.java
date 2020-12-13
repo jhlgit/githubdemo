@@ -2,7 +2,7 @@ package com.jhl.service;
 
 import com.jhl.entity.podo.Operation;
 
-public interface OperationService {
+public interface IOperationService {
     int updateByPrimaryKeySelective(Operation record);
     int insert(Operation record);
     int insertSelective(Operation record);

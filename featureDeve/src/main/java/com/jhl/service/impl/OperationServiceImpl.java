@@ -3,7 +3,7 @@ package com.jhl.service.impl;
 import com.jhl.base.BaseDeve;
 import com.jhl.entity.podo.Operation;
 import com.jhl.entity.podo.OperationMapper;
-import com.jhl.service.OperationService;
+import com.jhl.service.IOperationService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.Random;
 
 @Service
-public class OperationServiceImpl extends BaseDeve implements OperationService {
+public class OperationServiceImpl extends BaseDeve implements IOperationService {
     @Resource(type = OperationMapper.class)
     private OperationMapper operationMapper;
 

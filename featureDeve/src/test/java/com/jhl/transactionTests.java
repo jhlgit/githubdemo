@@ -3,7 +3,7 @@ package com.jhl;
 import com.jhl.base.BaseJunit4Test;
 import com.jhl.entity.podo.Operation;
 import com.jhl.entity.podo.OperationMapper;
-import com.jhl.service.OperationService;
+import com.jhl.service.IOperationService;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.springframework.test.annotation.Rollback;
@@ -20,7 +20,7 @@ public class transactionTests extends BaseJunit4Test {
     @Resource
     private OperationMapper operationMapper;
     @Resource
-    private OperationService operationService;
+    private IOperationService operationService;
 
     @Test
     @Rollback(false)
