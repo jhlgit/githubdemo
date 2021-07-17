@@ -1,11 +1,9 @@
-package com.jhl.entity.podo;
-
-import org.springframework.stereotype.Component;
+package com.jhl.entity.pojo;
 
 import java.util.Date;
-@Component
+
 public class Operation {
-    private Double logId;
+    private Long logId;
 
     private Integer custId;
 
@@ -17,11 +15,11 @@ public class Operation {
 
     private String remark;
 
-    public Double getLogId() {
+    public Long getLogId() {
         return logId;
     }
 
-    public void setLogId(Double logId) {
+    public void setLogId(Long logId) {
         this.logId = logId;
     }
 

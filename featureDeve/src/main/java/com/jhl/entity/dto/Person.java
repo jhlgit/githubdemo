@@ -16,13 +16,7 @@ public class Person {
     String emailAddress;
     int age;
 
-    public int getAge() {
-        return age;
-    }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
 
     public void printperson() {
         System.out.println(this.age);
@@ -50,20 +44,7 @@ public class Person {
 
 
     public static void main(String[] args) {
-        List<Person> roster = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            Person person = new Person();
-            person.setName(String.valueOf(i));
-            person.setAge(i);
-            if (i % 2 == 0) {
-                person.setGender(Sex.MAL);
-            } else {
-                person.setGender(Sex.FEMAL);
-
-            }
-            person.setEmailAddress("e"+i);
-            roster.add(person);
-        }
+        createList(10);
 //        Person.printPersonsOlderThan(roster, 3);
 //        Person.printperson(roster,
 //                a -> a.getGender() == Sex.MAL
@@ -74,6 +55,23 @@ public class Person {
 
     }
 
+    public static List<Person> createList(int size) {
+        List<Person> personList = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            Person person = new Person();
+            person.setName(String.valueOf(i));
+            person.setAge(i);
+            if (i % 2 == 0) {
+                person.setGender(Sex.MAL);
+            } else {
+                person.setGender(Sex.FEMAL);
+
+            }
+            person.setEmailAddress("e"+i);
+            personList.add(person);
+        }
+        return personList;
+    }
 
     public String getName() {
         return name;
@@ -81,6 +79,14 @@ public class Person {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
     }
 
     public Sex getGender() {
@@ -97,5 +103,13 @@ public class Person {
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 }

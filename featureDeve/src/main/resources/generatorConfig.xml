@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+ s -->
 <!DOCTYPE generatorConfiguration
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
+    <properties resource="database.properties"/>
     <!-- 通过属性location 指定数据库驱动的路径-->
-    <classPathEntry location="C:\F\tool\maven\repository\mysql\mysql-connector-java\5.1.35\mysql-connector-java-5.1.35.jar"/>
+    <classPathEntry
+            location="C:\F\tool\maven\repository\mysql\mysql-connector-java\5.1.35\mysql-connector-java-5.1.35.jar"/>
     <!--context 标签用于指定生成一组对象的环境，例如指定要连接的数据库，要生产对象的类型和要处理的数据库中的表 ，具体属性如下
     id 是必填属性 ，并且是唯一的
     targetRuntime 属性则是用于指定生产的代码的运行时环境 支持以下可选值
@@ -12,7 +18,8 @@
     MyBatis3Simple 该方式不会生成于Example相关的方法
      -->
     <context id="testTables" targetRuntime="MyBatis3">
-
+        <!--生成mapper.xml时覆盖原文件-->
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin" />
         <!-- commentGenerator 标签主要用来配置如何生成注释信息 可以通过property属性进行配置
  suppressAllComments ：阻止生成注释，默认为false
  suppressDate  ： 阻止生成的注释包含时间戳 默认为false
@@ -26,10 +33,10 @@
         </commentGenerator>
 
         <!--用于只当需要连接的数据库信息，该标签必选，并且只能有一个 数据库连接的信息：驱动类、连接地址、用户名、密码 -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/crash_course?characterEncoding=utf-8"
-                        userId="jhl"
-                        password="jhl">
+        <jdbcConnection driverClass="${db.driver}"
+                        connectionURL="${db.url}"
+                        userId="${db.user}"
+                        password="${db.password}">
         </jdbcConnection>
 
         <!--javaTypeResolver 标签用来配置JDBC 类型和Java 类型的转换
@@ -41,7 +48,7 @@ forceBigDecimals 默认false，该property主要用来把JDBC DECIMAL 和 NUMERI
         <!-- javaModelGenerator  用来控制生成的实体类
 targetPackage 生成实体类存放的包名
 targetProject:指定目标项目路径 可以使用相对路径或绝对路径 -->
-        <javaModelGenerator targetPackage="com.jhl.entity.podo"
+        <javaModelGenerator targetPackage="com.jhl.entity.pojo"
                             targetProject="src\main\java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false"/>
@@ -66,7 +73,7 @@ XMLMAPPER ：所有的方法都在XML 中，接口的调用依赖XML文件 （�
  targetPackage：mapper接口存放的包名
 targetProject:指定目标项目路径 可以使用相对路径或绝对路径 -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.jhl.entity.podo"
+                             targetPackage="com.jhl.entity.pojo"
                              targetProject="src\main\java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false"/>
@@ -78,6 +85,6 @@ targetProject:指定目标项目路径 可以使用相对路径或绝对路径 -
        domainObjectName ： 指定生成对象的基本名称，如果没有指定，则自动根据表明生成
 
        -->
-        <table tableName="operation"></table>
+        <table tableName="%"></table>
     </context>
 </generatorConfiguration>

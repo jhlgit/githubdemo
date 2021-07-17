@@ -1,8 +1,8 @@
 package com.jhl.service.impl;
 
 import com.jhl.base.BaseDeve;
-import com.jhl.entity.podo.Operation;
-import com.jhl.entity.podo.OperationMapper;
+import com.jhl.entity.pojo.Operation;
+import com.jhl.entity.pojo.OperationMapper;
 import com.jhl.service.IOperationService;
 import org.springframework.stereotype.Service;
 
@@ -47,7 +47,7 @@ public class OperationServiceImpl extends BaseDeve implements IOperationService 
 
     private void innerUpdate() {
         Operation operation=new Operation();
-        operation.setLogId((double)3);
+        operation.setLogId((long) 3);
         double random =  Math.random();
         long nextLong;
         nextLong = new Random().nextLong();

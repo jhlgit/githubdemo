@@ -1,6 +1,6 @@
 package com.jhl.service;
 
-import com.jhl.entity.podo.Operation;
+import com.jhl.entity.pojo.Operation;
 
 public interface IOperationService {
     int updateByPrimaryKeySelective(Operation record);

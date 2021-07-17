@@ -1,7 +1,7 @@
 package com.jhl.controller;
 
 import com.jhl.entity.Car;
-import com.jhl.entity.podo.Operation;
+import com.jhl.entity.pojo.Operation;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

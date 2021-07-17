@@ -1,16 +1,16 @@
-package com.jhl.entity.podo;
+package com.jhl.entity.pojo;
 
-import org.apache.ibatis.annotations.Mapper;
+import com.jhl.entity.pojo.Operation;
+import com.jhl.entity.pojo.OperationExample;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
-@Mapper
 public interface OperationMapper {
     long countByExample(OperationExample example);
 
     int deleteByExample(OperationExample example);
 
-    int deleteByPrimaryKey(Double logId);
+    int deleteByPrimaryKey(Long logId);
 
     int insert(Operation record);
 
@@ -18,7 +18,7 @@ public interface OperationMapper {
 
     List<Operation> selectByExample(OperationExample example);
 
-    Operation selectByPrimaryKey(Double logId);
+    Operation selectByPrimaryKey(Long logId);
 
     int updateByExampleSelective(@Param("record") Operation record, @Param("example") OperationExample example);
 

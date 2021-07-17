@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jhl.entity.pojo.VendorsMapper">
+  <resultMap id="BaseResultMap" type="com.jhl.entity.pojo.Vendors">
+    <id column="vend_id" jdbcType="INTEGER" property="vendId" />
+    <result column="vend_name" jdbcType="CHAR" property="vendName" />
+    <result column="vend_address" jdbcType="CHAR" property="vendAddress" />
+    <result column="vend_city" jdbcType="CHAR" property="vendCity" />
+    <result column="vend_state" jdbcType="CHAR" property="vendState" />
+    <result column="vend_zip" jdbcType="CHAR" property="vendZip" />
+    <result column="vend_country" jdbcType="CHAR" property="vendCountry" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    vend_id, vend_name, vend_address, vend_city, vend_state, vend_zip, vend_country, 
+    create_time, update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.jhl.entity.pojo.VendorsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from vendors
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from vendors
+    where vend_id = #{vendId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from vendors
+    where vend_id = #{vendId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jhl.entity.pojo.VendorsExample">
+    delete from vendors
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jhl.entity.pojo.Vendors">
+    insert into vendors (vend_id, vend_name, vend_address, 
+      vend_city, vend_state, vend_zip, 
+      vend_country, create_time, update_time
+      )
+    values (#{vendId,jdbcType=INTEGER}, #{vendName,jdbcType=CHAR}, #{vendAddress,jdbcType=CHAR}, 
+      #{vendCity,jdbcType=CHAR}, #{vendState,jdbcType=CHAR}, #{vendZip,jdbcType=CHAR}, 
+      #{vendCountry,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jhl.entity.pojo.Vendors">
+    insert into vendors
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="vendId != null">
+        vend_id,
+      </if>
+      <if test="vendName != null">
+        vend_name,
+      </if>
+      <if test="vendAddress != null">
+        vend_address,
+      </if>
+      <if test="vendCity != null">
+        vend_city,
+      </if>
+      <if test="vendState != null">
+        vend_state,
+      </if>
+      <if test="vendZip != null">
+        vend_zip,
+      </if>
+      <if test="vendCountry != null">
+        vend_country,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="vendId != null">
+        #{vendId,jdbcType=INTEGER},
+      </if>
+      <if test="vendName != null">
+        #{vendName,jdbcType=CHAR},
+      </if>
+      <if test="vendAddress != null">
+        #{vendAddress,jdbcType=CHAR},
+      </if>
+      <if test="vendCity != null">
+        #{vendCity,jdbcType=CHAR},
+      </if>
+      <if test="vendState != null">
+        #{vendState,jdbcType=CHAR},
+      </if>
+      <if test="vendZip != null">
+        #{vendZip,jdbcType=CHAR},
+      </if>
+      <if test="vendCountry != null">
+        #{vendCountry,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jhl.entity.pojo.VendorsExample" resultType="java.lang.Long">
+    select count(*) from vendors
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update vendors
+    <set>
+      <if test="record.vendId != null">
+        vend_id = #{record.vendId,jdbcType=INTEGER},
+      </if>
+      <if test="record.vendName != null">
+        vend_name = #{record.vendName,jdbcType=CHAR},
+      </if>
+      <if test="record.vendAddress != null">
+        vend_address = #{record.vendAddress,jdbcType=CHAR},
+      </if>
+      <if test="record.vendCity != null">
+        vend_city = #{record.vendCity,jdbcType=CHAR},
+      </if>
+      <if test="record.vendState != null">
+        vend_state = #{record.vendState,jdbcType=CHAR},
+      </if>
+      <if test="record.vendZip != null">
+        vend_zip = #{record.vendZip,jdbcType=CHAR},
+      </if>
+      <if test="record.vendCountry != null">
+        vend_country = #{record.vendCountry,jdbcType=CHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update vendors
+    set vend_id = #{record.vendId,jdbcType=INTEGER},
+      vend_name = #{record.vendName,jdbcType=CHAR},
+      vend_address = #{record.vendAddress,jdbcType=CHAR},
+      vend_city = #{record.vendCity,jdbcType=CHAR},
+      vend_state = #{record.vendState,jdbcType=CHAR},
+      vend_zip = #{record.vendZip,jdbcType=CHAR},
+      vend_country = #{record.vendCountry,jdbcType=CHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jhl.entity.pojo.Vendors">
+    update vendors
+    <set>
+      <if test="vendName != null">
+        vend_name = #{vendName,jdbcType=CHAR},
+      </if>
+      <if test="vendAddress != null">
+        vend_address = #{vendAddress,jdbcType=CHAR},
+      </if>
+      <if test="vendCity != null">
+        vend_city = #{vendCity,jdbcType=CHAR},
+      </if>
+      <if test="vendState != null">
+        vend_state = #{vendState,jdbcType=CHAR},
+      </if>
+      <if test="vendZip != null">
+        vend_zip = #{vendZip,jdbcType=CHAR},
+      </if>
+      <if test="vendCountry != null">
+        vend_country = #{vendCountry,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where vend_id = #{vendId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jhl.entity.pojo.Vendors">
+    update vendors
+    set vend_name = #{vendName,jdbcType=CHAR},
+      vend_address = #{vendAddress,jdbcType=CHAR},
+      vend_city = #{vendCity,jdbcType=CHAR},
+      vend_state = #{vendState,jdbcType=CHAR},
+      vend_zip = #{vendZip,jdbcType=CHAR},
+      vend_country = #{vendCountry,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where vend_id = #{vendId,jdbcType=INTEGER}
+  </update>
+</mapper>

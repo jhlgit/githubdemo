@@ -62,8 +62,9 @@
             <tx:method name="del*" propagation="REQUIRED" />
             <tx:method name="update*" propagation="REQUIRED" />
             <tx:method name="add*" propagation="REQUIRED" />
-            <tx:method name="noTx*" propagation="NEVER" />
+<!--            <tx:method name="noTx*" propagation="NEVER" />-->
             <tx:method name="*" rollback-for="Exception" />
+            <tx:method name="*" propagation="NEVER" />
         </tx:attributes>
     </tx:advice>
 

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jhl.entity.pojo.OperationMapper">
-  <resultMap id="BaseResultMap" type="com.jhl.entity.pojo.Operation">
-    <id column="log_id" jdbcType="BIGINT" property="logId" />
-    <result column="cust_id" jdbcType="INTEGER" property="custId" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="content" jdbcType="VARCHAR" property="content" />
+<mapper namespace="com.jhl.entity.pojo.OrderitemsMapper">
+  <resultMap id="BaseResultMap" type="com.jhl.entity.pojo.Orderitems">
+    <id column="order_num" jdbcType="INTEGER" property="orderNum" />
+    <id column="order_item" jdbcType="INTEGER" property="orderItem" />
+    <result column="prod_id" jdbcType="CHAR" property="prodId" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="item_price" jdbcType="DECIMAL" property="itemPrice" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -68,15 +68,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    log_id, cust_id, create_time, update_time, content, remark
+    order_num, order_item, prod_id, quantity, item_price, remark
   </sql>
-  <select id="selectByExample" parameterType="com.jhl.entity.pojo.OperationExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.jhl.entity.pojo.OrderitemsExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from operation
+    from orderitems
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,96 +84,98 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="com.jhl.entity.pojo.OrderitemsKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from operation
-    where log_id = #{logId,jdbcType=BIGINT}
+    from orderitems
+    where order_num = #{orderNum,jdbcType=INTEGER}
+      and order_item = #{orderItem,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from operation
-    where log_id = #{logId,jdbcType=BIGINT}
+  <delete id="deleteByPrimaryKey" parameterType="com.jhl.entity.pojo.OrderitemsKey">
+    delete from orderitems
+    where order_num = #{orderNum,jdbcType=INTEGER}
+      and order_item = #{orderItem,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.jhl.entity.pojo.OperationExample">
-    delete from operation
+  <delete id="deleteByExample" parameterType="com.jhl.entity.pojo.OrderitemsExample">
+    delete from orderitems
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.jhl.entity.pojo.Operation">
-    insert into operation (log_id, cust_id, create_time, 
-      update_time, content, remark
+  <insert id="insert" parameterType="com.jhl.entity.pojo.Orderitems">
+    insert into orderitems (order_num, order_item, prod_id, 
+      quantity, item_price, remark
       )
-    values (#{logId,jdbcType=BIGINT}, #{custId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{content,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+    values (#{orderNum,jdbcType=INTEGER}, #{orderItem,jdbcType=INTEGER}, #{prodId,jdbcType=CHAR}, 
+      #{quantity,jdbcType=INTEGER}, #{itemPrice,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.jhl.entity.pojo.Operation">
-    insert into operation
+  <insert id="insertSelective" parameterType="com.jhl.entity.pojo.Orderitems">
+    insert into orderitems
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="logId != null">
-        log_id,
+      <if test="orderNum != null">
+        order_num,
       </if>
-      <if test="custId != null">
-        cust_id,
+      <if test="orderItem != null">
+        order_item,
       </if>
-      <if test="createTime != null">
-        create_time,
+      <if test="prodId != null">
+        prod_id,
       </if>
-      <if test="updateTime != null">
-        update_time,
+      <if test="quantity != null">
+        quantity,
       </if>
-      <if test="content != null">
-        content,
+      <if test="itemPrice != null">
+        item_price,
       </if>
       <if test="remark != null">
         remark,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="logId != null">
-        #{logId,jdbcType=BIGINT},
+      <if test="orderNum != null">
+        #{orderNum,jdbcType=INTEGER},
       </if>
-      <if test="custId != null">
-        #{custId,jdbcType=INTEGER},
+      <if test="orderItem != null">
+        #{orderItem,jdbcType=INTEGER},
       </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
+      <if test="prodId != null">
+        #{prodId,jdbcType=CHAR},
       </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
+      <if test="quantity != null">
+        #{quantity,jdbcType=INTEGER},
       </if>
-      <if test="content != null">
-        #{content,jdbcType=VARCHAR},
+      <if test="itemPrice != null">
+        #{itemPrice,jdbcType=DECIMAL},
       </if>
       <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.jhl.entity.pojo.OperationExample" resultType="java.lang.Long">
-    select count(*) from operation
+  <select id="countByExample" parameterType="com.jhl.entity.pojo.OrderitemsExample" resultType="java.lang.Long">
+    select count(*) from orderitems
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update operation
+    update orderitems
     <set>
-      <if test="record.logId != null">
-        log_id = #{record.logId,jdbcType=BIGINT},
+      <if test="record.orderNum != null">
+        order_num = #{record.orderNum,jdbcType=INTEGER},
       </if>
-      <if test="record.custId != null">
-        cust_id = #{record.custId,jdbcType=INTEGER},
+      <if test="record.orderItem != null">
+        order_item = #{record.orderItem,jdbcType=INTEGER},
       </if>
-      <if test="record.createTime != null">
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      <if test="record.prodId != null">
+        prod_id = #{record.prodId,jdbcType=CHAR},
       </if>
-      <if test="record.updateTime != null">
-        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      <if test="record.quantity != null">
+        quantity = #{record.quantity,jdbcType=INTEGER},
       </if>
-      <if test="record.content != null">
-        content = #{record.content,jdbcType=VARCHAR},
+      <if test="record.itemPrice != null">
+        item_price = #{record.itemPrice,jdbcType=DECIMAL},
       </if>
       <if test="record.remark != null">
         remark = #{record.remark,jdbcType=VARCHAR},
@@ -184,45 +186,43 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update operation
-    set log_id = #{record.logId,jdbcType=BIGINT},
-      cust_id = #{record.custId,jdbcType=INTEGER},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      content = #{record.content,jdbcType=VARCHAR},
+    update orderitems
+    set order_num = #{record.orderNum,jdbcType=INTEGER},
+      order_item = #{record.orderItem,jdbcType=INTEGER},
+      prod_id = #{record.prodId,jdbcType=CHAR},
+      quantity = #{record.quantity,jdbcType=INTEGER},
+      item_price = #{record.itemPrice,jdbcType=DECIMAL},
       remark = #{record.remark,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jhl.entity.pojo.Operation">
-    update operation
+  <update id="updateByPrimaryKeySelective" parameterType="com.jhl.entity.pojo.Orderitems">
+    update orderitems
     <set>
-      <if test="custId != null">
-        cust_id = #{custId,jdbcType=INTEGER},
+      <if test="prodId != null">
+        prod_id = #{prodId,jdbcType=CHAR},
       </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
+      <if test="quantity != null">
+        quantity = #{quantity,jdbcType=INTEGER},
       </if>
-      <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="content != null">
-        content = #{content,jdbcType=VARCHAR},
+      <if test="itemPrice != null">
+        item_price = #{itemPrice,jdbcType=DECIMAL},
       </if>
       <if test="remark != null">
         remark = #{remark,jdbcType=VARCHAR},
       </if>
     </set>
-    where log_id = #{logId,jdbcType=BIGINT}
+    where order_num = #{orderNum,jdbcType=INTEGER}
+      and order_item = #{orderItem,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.jhl.entity.pojo.Operation">
-    update operation
-    set cust_id = #{custId,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      content = #{content,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="com.jhl.entity.pojo.Orderitems">
+    update orderitems
+    set prod_id = #{prodId,jdbcType=CHAR},
+      quantity = #{quantity,jdbcType=INTEGER},
+      item_price = #{itemPrice,jdbcType=DECIMAL},
       remark = #{remark,jdbcType=VARCHAR}
-    where log_id = #{logId,jdbcType=BIGINT}
+    where order_num = #{orderNum,jdbcType=INTEGER}
+      and order_item = #{orderItem,jdbcType=INTEGER}
   </update>
 </mapper>

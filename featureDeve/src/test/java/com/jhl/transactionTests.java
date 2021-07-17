@@ -1,8 +1,8 @@
 package com.jhl;
 
 import com.jhl.base.BaseJunit4Test;
-import com.jhl.entity.podo.Operation;
-import com.jhl.entity.podo.OperationMapper;
+import com.jhl.entity.pojo.Operation;
+import com.jhl.entity.pojo.OperationMapper;
 import com.jhl.service.IOperationService;
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -24,31 +24,31 @@ public class transactionTests extends BaseJunit4Test {
 
     @Test
     @Rollback(false)
-    public void  updateOpr(){
+    public void updateOpr() {
         Date date = new Date();
-        Operation operation=new Operation();
+        Operation operation = new Operation();
         operation.setCustId(10001);
-        double random =  Math.random();
+        double random = Math.random();
         long nextLong;
         nextLong = new Random().nextLong();
-        operation.setContent("first"+nextLong);
+        operation.setContent("first" + nextLong);
         operation.setCreateTime(date);
         operation.setUpdateTime(date);
 //        inset(operation);
-        operation.setLogId((double)1);
+        operation.setLogId(1L);
         operationService.modifyOperation(operation);
         String oprlog = "updateOprlog:";
-        logger.info(operation.getLogId()+ oprlog +nextLong);
+        logger.info(operation.getLogId() + oprlog + nextLong);
 
-        operation.setLogId((double)2);
+        operation.setLogId(2L);
         nextLong = new Random().nextLong();
-        operation.setContent("first"+nextLong);
+        operation.setContent("first" + nextLong);
         try {
             operationService.modifyOperation(operation);
         } catch (Exception e) {
-            logger.info(e.getMessage(),e);
+            logger.info(e.getMessage(), e);
         }
-        logger.info(operation.getLogId()+ oprlog +nextLong);
+        logger.info(operation.getLogId() + oprlog + nextLong);
     }
 
     private void inset(Operation operation) {
@@ -57,7 +57,7 @@ public class transactionTests extends BaseJunit4Test {
 
     public static void main(String[] args) {
         ArrayList<Operation> list = new ArrayList<Operation>();
-        list=null;
+        list = null;
         for (Operation operation : list) {
             System.out.println(operation);
         }
