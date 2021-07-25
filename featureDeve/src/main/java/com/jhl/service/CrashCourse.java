@@ -3,6 +3,7 @@ package com.jhl.service;
 import com.jhl.base.BaseDeve;
 import com.jhl.entity.pojo.*;
 import com.jhl.utils.commonTmpUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -30,7 +31,7 @@ public class CrashCourse extends BaseDeve {
 
     private static final String ID_TYPE_1 = "1";
 
-    @Resource(type = VendorsMapper.class)
+    @Autowired
     VendorsMapper vendorsMapper;
     @Resource(type = ProductsMapper.class)
     ProductsMapper productsMapper;

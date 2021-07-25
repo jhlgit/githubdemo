@@ -1,12 +1,9 @@
 package com.jhl.entity.pojo;
 
-import com.jhl.entity.pojo.Vendors;
-import com.jhl.entity.pojo.VendorsExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
 
-@Component
+import java.util.List;
+
 public interface VendorsMapper {
     long countByExample(VendorsExample example);
 

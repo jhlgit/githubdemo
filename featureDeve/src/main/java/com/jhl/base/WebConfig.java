@@ -1,6 +1,7 @@
 package com.jhl.base;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +21,7 @@ import java.util.List;
 @Configuration
 @EnableWebMvc
 @ComponentScan("com.jhl")
+@MapperScan("com.jhl.entity.pojo")
 public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean
     public ViewResolver viewResolver() {
