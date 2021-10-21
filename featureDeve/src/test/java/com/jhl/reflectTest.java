@@ -1,13 +1,21 @@
 package com.jhl;
 
-import com.jhl.controller.JavaSyntax;
+import com.jhl.base.RootConfig;
+import com.jhl.practice.JavaSyntaxTests;
+import com.jhl.controller.UserController;
 import com.jhl.entity.pojo.Operation;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.annotation.AnnotationAttributes;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -20,10 +28,15 @@ import java.util.Date;
  * @date
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:applicationContext.xml")
 @WebAppConfiguration
-//@ContextConfiguration(class = Springconfig)
+@ContextConfiguration(classes = {RootConfig.class})
 public class reflectTest {
+    @Autowired
+    @Qualifier(value = "nameOnlyFortest")
+    UserController userController;
+
+    public String testName="";
+
     @Test
     public void reflect() {
         System.out.println("reflect");
@@ -31,12 +44,12 @@ public class reflectTest {
         Operation operation = new Operation();
         operation.setLogId(new Long("123"));
         operation.setCreateTime(new Date());
-        JavaSyntax javaSyntax = new JavaSyntax();
+        JavaSyntaxTests javaSyntax = new JavaSyntaxTests();
 
         Field[] fields = clazz.getDeclaredFields();
 
         try {
-            Method method = clazz.getDeclaredMethod("pricustId", String.class);
+            Method method = clazz.getDeclaredMethod("setCustId", String.class);
             method.setAccessible(true);
             String invoke = (String) method.invoke(operation, "jhl");
             System.out.println(invoke);
@@ -70,5 +83,24 @@ public class reflectTest {
             e.printStackTrace();
         }
         System.out.println("end");
+    }
+
+    @Test
+    @RequestMapping()//无用，仅单元测试注解获取
+    public void test4AnnotationReflect() {
+        Class<reflectTest> clazz = reflectTest.class;
+        Annotation[] annotations = clazz.getAnnotations(); //只获取到直接的注解，与getDeclaredAnnotations结果相同。
+        Annotation[] declaredAnnotations = clazz.getDeclaredAnnotations();
+        Method[] methods = clazz.getMethods();//获取当前类和父类的public 方法。
+        Method[] declaredMethods = clazz.getDeclaredMethods();//只获取到当前类的方法
+        Method test4AnnotationReflect=null;
+        try {
+            test4AnnotationReflect= clazz.getDeclaredMethod("test4AnnotationReflect");
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+        Annotation[] annotations1 = AnnotationUtils.getAnnotations(clazz);
+        Annotation[] annotations2 = AnnotationUtils.getAnnotations(test4AnnotationReflect);
+        AnnotationAttributes annotationAttributes = AnnotationUtils.getAnnotationAttributes(clazz, annotations[1]);
     }
 }

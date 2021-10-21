@@ -4,16 +4,16 @@ import com.jhl.base.BaseDeve;
 import com.jhl.entity.pojo.Operation;
 import com.jhl.entity.pojo.OperationMapper;
 import com.jhl.service.IOperationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.Date;
 import java.util.Random;
 
 @Service
 public class OperationServiceImpl extends BaseDeve implements IOperationService {
-    @Resource(type = OperationMapper.class)
-    private OperationMapper operationMapper;
+    @Autowired
+    OperationMapper operationMapper;
 
     @Override
     public int updateByPrimaryKeySelective(Operation record) {

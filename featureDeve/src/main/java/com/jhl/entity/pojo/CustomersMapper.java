@@ -1,10 +1,10 @@
 package com.jhl.entity.pojo;
 
-import com.jhl.entity.pojo.Customers;
-import com.jhl.entity.pojo.CustomersExample;
-import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+@Mapper
 public interface CustomersMapper {
     long countByExample(CustomersExample example);
 

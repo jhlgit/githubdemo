@@ -1,7 +1,8 @@
 package com.jhl.base;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class BaseDeve {
-    protected static final Logger logger = Logger.getLogger(BaseDeve.class);
+    protected static final Log logger = LogFactory.getLog(BaseDeve.class);
 }
