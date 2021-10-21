@@ -1,29 +1,35 @@
 package com.jhl.controller;
 
-import com.jhl.entity.Car;
+import com.jhl.base.LogWriter;
+import com.jhl.entity.pojo.Customers;
+import com.jhl.entity.pojo.CustomersExample;
+import com.jhl.entity.pojo.CustomersMapper;
 import com.jhl.entity.pojo.Operation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
 
 @Controller
 public class UserController {
 
-    @RequestMapping(value = "/q", method = RequestMethod.GET)
-    public @ResponseBody  Object queryUser() {
+    @Autowired
+    CustomersMapper customersMapper;
+    @RequestMapping(value = "/q/{custId}", method = RequestMethod.GET)
+    public @ResponseBody  Object queryUser(@PathVariable  Integer custId) {
         System.out.println("111111");
-        String message = "Hello world from Spring MVC";
-        Car car = new Car();
-        car.setBrand("aodi");
-        car.setProductDate(new Date());
+        LogWriter.info(this.getClass(),"queryUser开始");
+        CustomersExample customersExample=new CustomersExample();
+        customersExample.createCriteria().andCustIdEqualTo(custId);
+        List<Customers> customers = customersMapper.selectByExample(customersExample);
         ArrayList<Object> objectArrayList = new ArrayList<>();
-        String s = new String();
-        s.hashCode();
-        objectArrayList.add(car);
+        objectArrayList.addAll(customers);
+        LogWriter.info(this.getClass(),"queryUser结束");
         return objectArrayList;
     }
     public static void main(String[] args) {

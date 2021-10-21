@@ -1,6 +1,7 @@
 package com.jhl.service;
 
 import com.jhl.base.BaseDeve;
+import com.jhl.base.LogWriter;
 import com.jhl.entity.pojo.*;
 import com.jhl.utils.commonTmpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class CrashCourse extends BaseDeve {
 
     @Autowired
     VendorsMapper vendorsMapper;
-    @Resource(type = ProductsMapper.class)
+    @Autowired
     ProductsMapper productsMapper;
     @Resource(type = ProductnotesMapper.class)
     ProductnotesMapper productnotesMapper;
@@ -134,7 +135,7 @@ public class CrashCourse extends BaseDeve {
                     orderitemsMapper.insert(orderitems);
                 }
                 count++;
-                logger.info("4订单：" + i);
+                LogWriter.info(this.getClass(),"4订单：" + i);
             }
             logger.info("订单生成完成:" + count);
         }
