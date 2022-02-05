@@ -17,7 +17,7 @@ import java.util.*;
  * @Date 2020/12/27 14:46
  * @Version 1.0
  */
-@Component
+@Component("crashCourse6")
 public class CrashCourse extends BaseDeve {
     /**
      * @Description 随机生成数据，

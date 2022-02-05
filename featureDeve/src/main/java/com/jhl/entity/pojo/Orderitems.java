@@ -11,6 +11,8 @@ public class Orderitems extends OrderitemsKey {
 
     private String remark;
 
+    private String oDate;
+
     public String getProdId() {
         return prodId;
     }
@@ -41,5 +43,13 @@ public class Orderitems extends OrderitemsKey {
 
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
+    }
+
+    public String getoDate() {
+        return oDate;
+    }
+
+    public void setoDate(String oDate) {
+        this.oDate = oDate == null ? null : oDate.trim();
     }
 }

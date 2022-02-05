@@ -8,6 +8,7 @@
     <result column="quantity" jdbcType="INTEGER" property="quantity" />
     <result column="item_price" jdbcType="DECIMAL" property="itemPrice" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="o_date" jdbcType="CHAR" property="oDate" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    order_num, order_item, prod_id, quantity, item_price, remark
+    order_num, order_item, prod_id, quantity, item_price, remark, o_date
   </sql>
   <select id="selectByExample" parameterType="com.jhl.entity.pojo.OrderitemsExample" resultMap="BaseResultMap">
     select
@@ -104,11 +105,11 @@
   </delete>
   <insert id="insert" parameterType="com.jhl.entity.pojo.Orderitems">
     insert into orderitems (order_num, order_item, prod_id, 
-      quantity, item_price, remark
-      )
+      quantity, item_price, remark, 
+      o_date)
     values (#{orderNum,jdbcType=INTEGER}, #{orderItem,jdbcType=INTEGER}, #{prodId,jdbcType=CHAR}, 
-      #{quantity,jdbcType=INTEGER}, #{itemPrice,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR}
-      )
+      #{quantity,jdbcType=INTEGER}, #{itemPrice,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR}, 
+      #{oDate,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.jhl.entity.pojo.Orderitems">
     insert into orderitems
@@ -131,6 +132,9 @@
       <if test="remark != null">
         remark,
       </if>
+      <if test="oDate != null">
+        o_date,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="orderNum != null">
@@ -150,6 +154,9 @@
       </if>
       <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="oDate != null">
+        #{oDate,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
@@ -180,6 +187,9 @@
       <if test="record.remark != null">
         remark = #{record.remark,jdbcType=VARCHAR},
       </if>
+      <if test="record.oDate != null">
+        o_date = #{record.oDate,jdbcType=CHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -192,7 +202,8 @@
       prod_id = #{record.prodId,jdbcType=CHAR},
       quantity = #{record.quantity,jdbcType=INTEGER},
       item_price = #{record.itemPrice,jdbcType=DECIMAL},
-      remark = #{record.remark,jdbcType=VARCHAR}
+      remark = #{record.remark,jdbcType=VARCHAR},
+      o_date = #{record.oDate,jdbcType=CHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -212,6 +223,9 @@
       <if test="remark != null">
         remark = #{remark,jdbcType=VARCHAR},
       </if>
+      <if test="oDate != null">
+        o_date = #{oDate,jdbcType=CHAR},
+      </if>
     </set>
     where order_num = #{orderNum,jdbcType=INTEGER}
       and order_item = #{orderItem,jdbcType=INTEGER}
@@ -221,7 +235,8 @@
     set prod_id = #{prodId,jdbcType=CHAR},
       quantity = #{quantity,jdbcType=INTEGER},
       item_price = #{itemPrice,jdbcType=DECIMAL},
-      remark = #{remark,jdbcType=VARCHAR}
+      remark = #{remark,jdbcType=VARCHAR},
+      o_date = #{oDate,jdbcType=CHAR}
     where order_num = #{orderNum,jdbcType=INTEGER}
       and order_item = #{orderItem,jdbcType=INTEGER}
   </update>

@@ -5,6 +5,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -20,8 +21,9 @@ import java.util.List;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.jhl")
+@ComponentScan("com.jhl.*")
 @MapperScan("com.jhl.entity.pojo")
+@EnableAspectJAutoProxy(proxyTargetClass =true)
 public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean
     public ViewResolver viewResolver() {

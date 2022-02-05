@@ -484,6 +484,76 @@ public class OrderitemsExample {
             addCriterion("remark not between", value1, value2, "remark");
             return (Criteria) this;
         }
+
+        public Criteria andODateIsNull() {
+            addCriterion("o_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andODateIsNotNull() {
+            addCriterion("o_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andODateEqualTo(String value) {
+            addCriterion("o_date =", value, "oDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andODateNotEqualTo(String value) {
+            addCriterion("o_date <>", value, "oDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andODateGreaterThan(String value) {
+            addCriterion("o_date >", value, "oDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andODateGreaterThanOrEqualTo(String value) {
+            addCriterion("o_date >=", value, "oDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andODateLessThan(String value) {
+            addCriterion("o_date <", value, "oDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andODateLessThanOrEqualTo(String value) {
+            addCriterion("o_date <=", value, "oDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andODateLike(String value) {
+            addCriterion("o_date like", value, "oDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andODateNotLike(String value) {
+            addCriterion("o_date not like", value, "oDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andODateIn(List<String> values) {
+            addCriterion("o_date in", values, "oDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andODateNotIn(List<String> values) {
+            addCriterion("o_date not in", values, "oDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andODateBetween(String value1, String value2) {
+            addCriterion("o_date between", value1, value2, "oDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andODateNotBetween(String value1, String value2) {
+            addCriterion("o_date not between", value1, value2, "oDate");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

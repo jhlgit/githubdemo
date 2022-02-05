@@ -1,10 +1,10 @@
 package com.jhl.entity.pojo;
 
-import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
-
+import com.jhl.entity.pojo.Products;
+import com.jhl.entity.pojo.ProductsExample;
 import java.util.List;
-@Component
+import org.apache.ibatis.annotations.Param;
+
 public interface ProductsMapper {
     long countByExample(ProductsExample example);
 

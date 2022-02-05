@@ -5,6 +5,7 @@ import com.jhl.entity.pojo.Customers;
 import com.jhl.entity.pojo.CustomersExample;
 import com.jhl.entity.pojo.CustomersMapper;
 import com.jhl.entity.pojo.Operation;
+import com.jhl.service.AspectjTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,9 @@ public class UserController {
 
     @Autowired
     CustomersMapper customersMapper;
+    @Autowired
+    AspectjTest aspectjTest;
+
     @RequestMapping(value = "/q/{custId}", method = RequestMethod.GET)
     public @ResponseBody  Object queryUser(@PathVariable  Integer custId) {
         System.out.println("111111");
@@ -29,6 +33,7 @@ public class UserController {
         List<Customers> customers = customersMapper.selectByExample(customersExample);
         ArrayList<Object> objectArrayList = new ArrayList<>();
         objectArrayList.addAll(customers);
+        aspectjTest.test();
         LogWriter.info(this.getClass(),"queryUser结束");
         return objectArrayList;
     }

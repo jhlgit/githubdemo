@@ -87,5 +87,4 @@ public class RootConfig {
         return dataSourceTransactionManager;
     }
 
-
 }
