@@ -17,18 +17,18 @@ public class SpringProxyLogic implements AopBase {
     SpringProxyLogic springProxyLogic;
     @Override
     public Object handle(Object object) {
-        LogWriter.info(this.getClass(),"SpringProxyLogic开始");
+        LogWriter.info(this.getClass(),"SpringProxyLogic.handle开始");
         return null;
     }
 
     /**
-     * @Description 被pointcut的私有方法
+     * @Description 私有方法切点不会生效：@Pointcut("execution(private * com.jhl.practice.aop.SpringProxyLogic.privateMethod(..))")
      * @Author jhl
      * @Date 2022/1/25 13:45
      * @Version 1.0
      */
-    private void pmethod(){
-        LogWriter.info(this.getClass(),"pmethod开始");
+    private void privateMethod(){
+        LogWriter.info(this.getClass(),"privateMethod开始");
     }
 
     /**
@@ -39,7 +39,7 @@ public class SpringProxyLogic implements AopBase {
      */
     public void publicMethod(){
         LogWriter.info(this.getClass(),"publicMethod开始");
-        springProxyLogic.pmethod();
+        springProxyLogic.privateMethod();
         LogWriter.info(this.getClass(),"publicMethod结束");
     }
 }

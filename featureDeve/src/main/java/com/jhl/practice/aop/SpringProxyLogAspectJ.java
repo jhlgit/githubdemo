@@ -5,6 +5,7 @@ import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Component;
 
 /**
  * @Description
@@ -13,12 +14,13 @@ import org.aspectj.lang.annotation.Pointcut;
  * @Version 1.0
  */
 @Aspect
+@Component
 public class SpringProxyLogAspectJ {
 
-    @Pointcut("execution(private * com.jhl.practice.aop.AopBase.handle(..))")
+    @Pointcut("execution(public * com.jhl.practice.aop.AopBase.handle(..))")
     public void handle(){
     }
-    @Pointcut("execution(private * com.jhl.practice.aop.SpringProxyLogic.pmethod(..))")
+    @Pointcut("execution(private * com.jhl.practice.aop.SpringProxyLogic.privateMethod(..))")
     public void pmethod(){
     }
     @After("handle()")
