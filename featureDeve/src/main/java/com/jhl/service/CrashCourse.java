@@ -102,38 +102,7 @@ public class CrashCourse extends BaseDeve {
         int count = 0;
         if (ordersCount < ORDER_NO) {
             for (int i = (int) ordersCount; i <= ORDER_NO; i++) {
-                Date date = new Date();
-                orders.setOrderNum(i);
-                Orders orders1 = ordersMapper.selectByPrimaryKey(i);
-                if (orders1 != null) {
-                    continue;
-                }
-                orders.setOrderDate(date);
-                orders.setCustId(random.nextInt(CUSTOMER_NO));
-                ordersMapper.insert(orders);
-                int itemNo = random.nextInt(5);
-                for (int j = 0; j < itemNo; j++) {
-                    orderitems.setOrderNum(i);
-                    orderitems.setOrderItem(j);
-                    Orderitems orderitems1 = orderitemsMapper.selectByPrimaryKey(orderitems);
-                    if (orderitems1 != null) {
-                        continue;
-                    }
-
-                    String prodId = commonTmpUtils.getMapRandomKey(priceMap);
-                    orderitems.setProdId(prodId);
-                    int quantity = random.nextInt(5);
-                    orderitems.setQuantity(quantity);
-                    BigDecimal itemPrice = new BigDecimal(quantity).multiply(new BigDecimal(priceMap.get(prodId)));
-                    orderitems.setItemPrice(itemPrice);
-
-                    sb.append(commonTmpUtils.genChineseCharacter());
-                    if (sb.toString().length() > 2000) {
-                        sb.setLength(0);
-                    }
-                    orderitems.setRemark(sb.toString());
-                    orderitemsMapper.insert(orderitems);
-                }
+                noTxGenOneOrder(priceMap,1);
                 count++;
                 LogWriter.info(this.getClass(),"4订单：" + i);
             }
@@ -253,7 +222,7 @@ public class CrashCourse extends BaseDeve {
      * @Date 2021/1/1 17:20
      * @Version 1.0
      */
-    private void productPrice(Map<String, String> map, ProductsExample example) {
+    public void productPrice(Map<String, String> map, ProductsExample example) {
         List<Products> productsList = productsMapper.selectByExample(example);
         for (Products products : productsList) {
             map.put(products.getProdId(), String.valueOf(products.getProdPrice()));
@@ -263,5 +232,58 @@ public class CrashCourse extends BaseDeve {
     public static void main(String[] args) {
         BigDecimal a = new BigDecimal(5).multiply(new BigDecimal("15.5"));
         System.out.println(a);
+    }
+
+    /**
+     * @Description 生成一个订单信息
+     * @Author jhl
+     * @Date 2022/2/7 21:03
+     * @Version 1.0
+     */
+    public void noTxGenOneOrder(Map<String, String> priceMap,int orderCount) {
+        Random random = new Random();
+        Orders orders = new Orders();
+        Orderitems orderitems = new Orderitems();
+        long ordersCount = ordersMapper.selectMaxOrderNum();
+        StringBuffer sb = new StringBuffer();
+        int count = 0;
+            for (int i = 1; i <= orderCount; i++) {
+                Date date = new Date();
+                int orderNum=(int)ordersCount +i;
+                orders.setOrderNum( orderNum);
+                Orders orders1 = ordersMapper.selectByPrimaryKey(orderNum);
+                if (orders1 != null) {
+                    continue;
+                }
+                orders.setOrderDate(date);
+                orders.setCustId(random.nextInt(CUSTOMER_NO));
+                ordersMapper.insert(orders);
+                int itemNo = random.nextInt(5);
+                for (int j = 0; j < itemNo; j++) {
+                    orderitems.setOrderNum(orderNum);
+                    orderitems.setOrderItem(j);
+                    Orderitems orderitems1 = orderitemsMapper.selectByPrimaryKey(orderitems);
+                    if (orderitems1 != null) {
+                        continue;
+                    }
+
+                    String prodId = commonTmpUtils.getMapRandomKey(priceMap);
+                    orderitems.setProdId(prodId);
+                    int quantity = random.nextInt(5);
+                    orderitems.setQuantity(quantity);
+                    BigDecimal itemPrice = new BigDecimal(quantity).multiply(new BigDecimal(priceMap.get(prodId)));
+                    orderitems.setItemPrice(itemPrice);
+
+                    sb.append(commonTmpUtils.genChineseCharacter());
+                    if (sb.toString().length() > 2000) {
+                        sb.setLength(0);
+                    }
+                    orderitems.setRemark(sb.toString());
+                    orderitemsMapper.insert(orderitems);
+                }
+                count++;
+                LogWriter.info(this.getClass(),"4订单号：" + orderNum);
+            }
+            logger.info("订单生成完成，生成个数为:" + count);
     }
 }

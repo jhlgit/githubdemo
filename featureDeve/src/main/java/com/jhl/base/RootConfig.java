@@ -16,7 +16,7 @@ import java.beans.PropertyVetoException;
 import java.io.IOException;
 
 @Configuration
-@ImportResource(locations = {"classpath:applicationContext.xml", "classpath:mapper/*.xml"})
+@ImportResource(locations = {"classpath:applicationContext.xml"})
 @PropertySource("classpath:application.properties")
 public class RootConfig {
 

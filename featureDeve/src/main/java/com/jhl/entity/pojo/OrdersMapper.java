@@ -1,9 +1,8 @@
 package com.jhl.entity.pojo;
 
-import com.jhl.entity.pojo.Orders;
-import com.jhl.entity.pojo.OrdersExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface OrdersMapper {
     long countByExample(OrdersExample example);
@@ -27,4 +26,5 @@ public interface OrdersMapper {
     int updateByPrimaryKeySelective(Orders record);
 
     int updateByPrimaryKey(Orders record);
+    int selectMaxOrderNum();
 }
