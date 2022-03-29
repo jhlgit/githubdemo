@@ -1,5 +1,6 @@
 package com.jhl.controller;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -8,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 
 /**
  * @Description
@@ -15,6 +17,7 @@ import java.io.IOException;
  * @Date 2022/3/15 20:55
  * @Version 1.0
  */
+@Component
 @RestController
 @RequestMapping(value = "/upload")
 public class UploadFileController {
@@ -27,7 +30,8 @@ public class UploadFileController {
             String originalFilename = multipartFile.getOriginalFilename();
             File file=new File(fileFoler+File.separator+originalFilename);
             try {
-                multipartFile.transferTo(file);
+                Path path = file.toPath();
+                multipartFile.transferTo(path);
             } catch (IOException e) {
                 e.printStackTrace();
             }
