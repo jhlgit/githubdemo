@@ -52,7 +52,7 @@ public class CrashCourse extends BaseDeve {
      * @Date 2020/12/28 21:15
      * @Version 1.0
      */
-    public void noTxGenertatisonData() throws Exception{
+    public void noTxGenertatisonData() throws Exception {
 
         Random random = new Random();
         //1.供应商
@@ -72,7 +72,7 @@ public class CrashCourse extends BaseDeve {
         //3.客户
         try {
             noTxGenCustomer(random);
-            int a=5/0;
+            int a = 5 / 0;
         } catch (Exception e) {
             e.printStackTrace();
             throw new Exception();
@@ -135,7 +135,7 @@ public class CrashCourse extends BaseDeve {
                     orderitemsMapper.insert(orderitems);
                 }
                 count++;
-                LogWriter.info(this.getClass(),"4订单：" + i);
+                LogWriter.info(this.getClass(), "4订单：" + i);
             }
             logger.info("订单生成完成:" + count);
         }
