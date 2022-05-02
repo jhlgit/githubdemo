@@ -1,17 +1,15 @@
 package com.jhl;
 
 import com.jhl.base.RootConfig;
-import com.jhl.practice.JavaSyntaxTests;
 import com.jhl.controller.UserController;
 import com.jhl.entity.pojo.Operation;
+import com.jhl.practice.JavaSyntaxTests;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -27,7 +25,6 @@ import java.util.Date;
  * @Description
  * @date
  */
-@RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = {RootConfig.class})
 public class reflectTest {
@@ -35,7 +32,7 @@ public class reflectTest {
     @Qualifier(value = "nameOnlyFortest")
     UserController userController;
 
-    public String testName="";
+    public String testName = "";
 
     @Test
     public void reflect() {
@@ -93,9 +90,9 @@ public class reflectTest {
         Annotation[] declaredAnnotations = clazz.getDeclaredAnnotations();
         Method[] methods = clazz.getMethods();//获取当前类和父类的public 方法。
         Method[] declaredMethods = clazz.getDeclaredMethods();//只获取到当前类的方法
-        Method test4AnnotationReflect=null;
+        Method test4AnnotationReflect = null;
         try {
-            test4AnnotationReflect= clazz.getDeclaredMethod("test4AnnotationReflect");
+            test4AnnotationReflect = clazz.getDeclaredMethod("test4AnnotationReflect");
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }

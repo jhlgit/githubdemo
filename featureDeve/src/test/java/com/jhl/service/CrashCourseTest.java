@@ -2,10 +2,9 @@ package com.jhl.service;
 
 import com.jhl.BaseTest;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 /**
@@ -14,7 +13,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
  * @Date 2020/12/28 19:44
  * @Version 1.0
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
 @WebAppConfiguration
 public class CrashCourseTest extends BaseTest {
