@@ -11,7 +11,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <javaee-api.version>7.0</javaee-api.version>
-        <spring.version>4.2.6.RELEASE</spring.version>
+        <spring.version>4.2.7.RELEASE</spring.version>
         <junit.version>4.12</junit.version>
     </properties>
     <dependencies>
