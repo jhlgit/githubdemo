@@ -1,4 +1,4 @@
-package com.jhl.ProducerAndConsumer.queue;
+package com.jhl.practice;
 
 /**
  * @Description

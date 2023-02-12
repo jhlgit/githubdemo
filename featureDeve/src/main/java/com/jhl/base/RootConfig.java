@@ -11,6 +11,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 import java.beans.PropertyVetoException;
 import java.io.IOException;
@@ -18,6 +19,7 @@ import java.io.IOException;
 @Configuration
 @ImportResource(locations = {"classpath:applicationContext.xml", "classpath:mapper/*.xml"})
 @PropertySource("classpath:application.properties")
+@EnableAsync
 public class RootConfig {
 
     @Value("${db.driver}")
