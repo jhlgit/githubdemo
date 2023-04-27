@@ -1,6 +1,6 @@
 package com.jhl.practice;
 
-import javafx.concurrent.Task;
+import com.jhl.base.LogWriter;
 
 import java.util.concurrent.*;
 
@@ -15,6 +15,12 @@ public class RunableAndCallable {
         RunableAndCallable runableAndCallable=new RunableAndCallable();
         runableAndCallable.callablePractice();
         System.out.println("RunableAndCallable.main end");
+        int i=10;
+        for (int j = 0; j < 10; ++j) {
+
+            LogWriter.info(RunableAndCallable.class,"j:"+j);
+        }
+
 
     }
     public void callablePractice(){

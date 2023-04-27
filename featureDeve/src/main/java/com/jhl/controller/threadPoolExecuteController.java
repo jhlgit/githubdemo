@@ -22,7 +22,7 @@ public class threadPoolExecuteController {
 
     @Autowired
     AsyncLogic asyncLogic;
-    private LinkedBlockingQueue<Runnable> list = new LinkedBlockingQueue<>(10);
+    private LinkedBlockingQueue<Runnable> list = new LinkedBlockingQueue<>(1000);
     private ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(3, 3, 10, TimeUnit.SECONDS, list);
 
     @RequestMapping("/threadPool/temp")
@@ -39,7 +39,8 @@ public class threadPoolExecuteController {
 
     public void creat() {
         System.out.println("creat执行开始");
-        for (int i = 0; i < 500; i++) {
+        threadPoolExecutor.allowCoreThreadTimeOut(true);
+        for (int i = 0; i < 5; i++) {
             System.out.println("creat执行循环第:" + i);
             threadPoolExecutor.execute(new CommonRunThread());
         }

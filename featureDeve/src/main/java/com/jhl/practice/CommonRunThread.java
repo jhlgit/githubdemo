@@ -16,7 +16,7 @@ public class CommonRunThread implements Runnable {
         System.out.println(preMsg+",start");
         for (int i = 0; i < 2; i++) {
             try {
-                Thread.sleep(10*1000);
+                Thread.sleep(1*1000);
                 System.out.println(preMsg+",循环第:"+i);
             } catch (InterruptedException e) {
                 e.printStackTrace();
