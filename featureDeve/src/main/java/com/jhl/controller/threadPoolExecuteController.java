@@ -39,6 +39,7 @@ public class threadPoolExecuteController {
 
     public void creat() {
         System.out.println("creat执行开始");
+        threadPoolExecutor.allowCoreThreadTimeOut(true);
         for (int i = 0; i < 5; i++) {
             System.out.println("creat执行循环第:" + i);
             threadPoolExecutor.execute(new CommonRunThread());
