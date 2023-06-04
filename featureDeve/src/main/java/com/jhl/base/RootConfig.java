@@ -1,13 +1,11 @@
 package com.jhl.base;
 
+import com.jhl.practice.RecodeAccessAspect;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -20,6 +18,7 @@ import java.io.IOException;
 @ImportResource(locations = {"classpath:applicationContext.xml", "classpath:mapper/*.xml"})
 @PropertySource("classpath:application.properties")
 @EnableAsync
+@EnableAspectJAutoProxy
 public class RootConfig {
 
     @Value("${db.driver}")

@@ -2,6 +2,8 @@ package com.jhl.base;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @Description
@@ -17,7 +19,12 @@ public class LogWriter {
      * @Version 1.0
      */
     public static void info (Class clazz,String message){
-        Log logger = LogFactory.getLog(clazz);
-        logger.info(message);
+        Logger logger = LoggerFactory.getLogger(clazz);
+        logger.info(message,"","","","");
+    }
+
+    public static void info (Class clazz,String message,Object... arguments){
+        Logger logger = LoggerFactory.getLogger(clazz);
+        logger.info(message,arguments);
     }
 }

@@ -5,6 +5,7 @@ import com.jhl.entity.pojo.Customers;
 import com.jhl.entity.pojo.CustomersExample;
 import com.jhl.entity.pojo.CustomersMapper;
 import com.jhl.entity.pojo.Operation;
+import com.jhl.practice.RecodeAccess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,8 @@ public class UserController {
 
     @Autowired
     CustomersMapper customersMapper;
+
+    @RecodeAccess
     @RequestMapping(value = "/q/{custId}", method = RequestMethod.GET)
     public @ResponseBody  Object queryUser(@PathVariable  Integer custId) {
         System.out.println("111111");

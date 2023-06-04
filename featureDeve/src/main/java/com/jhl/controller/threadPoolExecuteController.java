@@ -39,7 +39,7 @@ public class threadPoolExecuteController {
 
     public void creat() {
         System.out.println("creat执行开始");
-        for (int i = 0; i < 500; i++) {
+        for (int i = 0; i < 5; i++) {
             System.out.println("creat执行循环第:" + i);
             threadPoolExecutor.execute(new CommonRunThread());
         }
