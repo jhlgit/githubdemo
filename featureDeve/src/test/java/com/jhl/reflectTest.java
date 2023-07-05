@@ -1,16 +1,17 @@
 package com.jhl;
 
-import com.jhl.base.RootConfig;
+import com.jhl.base.LogWriter;
 import com.jhl.controller.UserController;
 import com.jhl.entity.pojo.Operation;
 import com.jhl.practice.JavaSyntaxTests;
+import com.jhl.utils.SpringBeanUtils;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.annotation.AnnotationUtils;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.lang.annotation.Annotation;
@@ -25,11 +26,10 @@ import java.util.Date;
  * @Description
  * @date
  */
-@WebAppConfiguration
-@ContextConfiguration(classes = {RootConfig.class})
+@SpringBootTest(classes=FeatureApplication.class)
+@RunWith(SpringRunner.class)
 public class reflectTest {
     @Autowired
-    @Qualifier(value = "nameOnlyFortest")
     UserController userController;
 
     public String testName = "";
@@ -37,6 +37,9 @@ public class reflectTest {
     @Test
     public void reflect() {
         System.out.println("reflect");
+        LogWriter.info(this.getClass(),"CrashCourseTest.userController:{},{}",userController.getClass().getName(),Integer.toHexString(userController.hashCode()));
+        LogWriter.info(this.getClass(),"CrashCourseTest.UserController:{},{}", SpringBeanUtils.getBean("userController").getClass().getName(),Integer.toHexString(SpringBeanUtils.getBean("userController").hashCode()));
+        LogWriter.info(this.getClass(),"结束"+SpringBeanUtils.getApplicationContext());
         Class clazz = Operation.class;
         Operation operation = new Operation();
         operation.setLogId(new Long("123"));

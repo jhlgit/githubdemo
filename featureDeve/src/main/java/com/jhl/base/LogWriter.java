@@ -1,7 +1,5 @@
 package com.jhl.base;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,4 +25,10 @@ public class LogWriter {
         Logger logger = LoggerFactory.getLogger(clazz);
         logger.info(message,arguments);
     }
+
+    public static void error (Class clazz,String message,Throwable throwable){
+        Logger logger = LoggerFactory.getLogger(clazz);
+        logger.error(message,throwable);
+    }
+
 }

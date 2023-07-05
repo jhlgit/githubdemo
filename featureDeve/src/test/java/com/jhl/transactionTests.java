@@ -1,30 +1,41 @@
 package com.jhl;
 
 import com.jhl.base.BaseJunit4Test;
+import com.jhl.base.LogWriter;
+import com.jhl.controller.UserController;
 import com.jhl.entity.pojo.Operation;
 import com.jhl.entity.pojo.OperationMapper;
 import com.jhl.service.IOperationService;
-import org.apache.log4j.Logger;
+import com.jhl.utils.SpringBeanUtils;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.mock.mockito.MockReset;
 import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
-@WebAppConfiguration
+@SpringBootTest(classes=FeatureApplication.class)
+@RunWith(SpringRunner.class)
 public class transactionTests extends BaseJunit4Test {
-    private static final Logger logger = Logger.getLogger(transactionTests.class);
     @Resource
     private OperationMapper operationMapper;
-    @Resource
+    @Autowired
     private IOperationService operationService;
-
+    @MockBean(reset= MockReset.NONE)
+    UserController userController;
     @Test
     @Rollback(false)
     public void updateOpr() {
+        LogWriter.info(this.getClass(),"CrashCourseTest.userController:{},{}",userController.getClass().getName(),Integer.toHexString(userController.hashCode()));
+        LogWriter.info(this.getClass(),"CrashCourseTest.UserController:{},{}", SpringBeanUtils.getBean("userController").getClass().getName(),Integer.toHexString(SpringBeanUtils.getBean("userController").hashCode()));
+        LogWriter.info(this.getClass(),"结束"+SpringBeanUtils.getApplicationContext());
         Date date = new Date();
         Operation operation = new Operation();
         operation.setCustId(10001);
@@ -38,7 +49,7 @@ public class transactionTests extends BaseJunit4Test {
         operation.setLogId(1L);
         operationService.modifyOperation(operation);
         String oprlog = "updateOprlog:";
-        logger.info(operation.getLogId() + oprlog + nextLong);
+        LogWriter.info(this.getClass(),operation.getLogId() + oprlog + nextLong);
 
         operation.setLogId(2L);
         nextLong = new Random().nextLong();
@@ -46,9 +57,9 @@ public class transactionTests extends BaseJunit4Test {
         try {
             operationService.modifyOperation(operation);
         } catch (Exception e) {
-            logger.info(e.getMessage(), e);
+            LogWriter.error(this.getClass(),e.getMessage(), e);
         }
-        logger.info(operation.getLogId() + oprlog + nextLong);
+        LogWriter.info(this.getClass(),operation.getLogId() + oprlog + nextLong);
     }
 
     private void inset(Operation operation) {

@@ -72,7 +72,7 @@ public class CrashCourse extends BaseDeve {
         //3.客户
         try {
             noTxGenCustomer(random);
-            int a = 5 / 0;
+//            int a = 5 / 0;
         } catch (Exception e) {
             e.printStackTrace();
             throw new Exception();

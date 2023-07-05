@@ -25,8 +25,9 @@ public class UserController {
     @RecodeAccess
     @RequestMapping(value = "/q/{custId}", method = RequestMethod.GET)
     public @ResponseBody  Object queryUser(@PathVariable  Integer custId) {
+        String msgPrefix="queryUser查询";
         System.out.println("111111");
-        LogWriter.info(this.getClass(),"queryUser开始");
+        LogWriter.info(this.getClass(),"{}开始" , msgPrefix);
         CustomersExample customersExample=new CustomersExample();
         customersExample.createCriteria().andCustIdEqualTo(custId);
         List<Customers> customers = customersMapper.selectByExample(customersExample);

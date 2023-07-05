@@ -16,9 +16,6 @@ public class SpringBeanUtils implements ApplicationContextAware {
 
     private static ApplicationContext context;
 
-    public static void setContext(ApplicationContext applicationContext) {
-        SpringBeanUtils.context = applicationContext;
-    }
 
 //通过name获取 Bean.
 

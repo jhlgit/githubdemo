@@ -1,6 +1,5 @@
 package com.jhl.base;
 
-import com.jhl.practice.RecodeAccessAspect;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -29,7 +28,7 @@ public class RootConfig {
     private String dbUser;
     @Value("${db.password}")
     private String dbPassword;
-    @Value("18")
+    @Value("${db.initialPoolSize}")
     private Integer dbInitialPoolSize;
 
     /**
