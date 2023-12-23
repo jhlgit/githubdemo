@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spittr</title>
+<script type="text/javascript" src="lib/jquery-3.7.1.js"></script>
+</head>
+<body>
+<h1>Register</h1>
+<form method="POST" action="http://127.0.0.1:8080/deve/tmpc/createPerson" id="formid">
+    First Name: <input type="text" name="firstName" /><br/>
+    Last Name: <input type="text" name="name" value="jhl"/><br/>
+    Username: <input type="text" name="username" value="ujhl"/><br/>
+    Password: <input type="password" name="password" value="p123"/><br/>
+    <input type="submit" value="Register" />
+    <input type="button" value="RegisterjQuery"  id="RegisterjQuery"/>
+</form>
+</body>
+<script>
+    $("#RegisterjQuery").click(function(){
+            var form= $("#formid");
+            var url =form.attr('action');
+            $.post(url,
+            form.serialize(),
+            function(data,status){
+			alert("数据: \n" + data + "\n状态: " + status);
+		}
+            );
+    });
+
+</script>
+</html>
