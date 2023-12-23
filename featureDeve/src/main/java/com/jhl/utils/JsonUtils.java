@@ -13,8 +13,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import lombok.NonNull;
-import lombok.extern.slf4j.Slf4j;
 
 //@Slf4j
 public class JsonUtils {
@@ -64,7 +62,7 @@ public class JsonUtils {
      * @param <T>
      * @return
      */
-    public static <T> T parse(@NonNull String json, Class<T> clazz) {
+    public static <T> T parse(String json, Class<T> clazz) {
         T t = null;
         try {
             t = mapper.readValue(json, clazz);

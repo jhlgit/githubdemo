@@ -42,7 +42,7 @@ public class reflectTest {
         LogWriter.info(this.getClass(),"结束"+SpringBeanUtils.getApplicationContext());
         Class clazz = Operation.class;
         Operation operation = new Operation();
-        operation.setLogId(new Long("123"));
+        operation.setLogId(Long.valueOf("123"));
         operation.setCreateTime(new Date());
         JavaSyntaxTests javaSyntax = new JavaSyntaxTests();
 
