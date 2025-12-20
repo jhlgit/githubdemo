@@ -21,8 +21,8 @@ import java.util.concurrent.TimeUnit;
 public class threadPoolExecuteController {
 
     @Autowired
-    AsyncLogic asyncLogic;
-    private LinkedBlockingQueue<Runnable> list = new LinkedBlockingQueue<>(10);
+    AsyncLogic asyncLogica;
+    private LinkedBlockingQueue<Runnable> list = new LinkedBlockingQueue<>(2);
     private ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(3, 3, 10, TimeUnit.SECONDS, list);
 
     @RequestMapping("/threadPool/temp")
@@ -33,16 +33,19 @@ public class threadPoolExecuteController {
     @RequestMapping("/threadPool/async")
     public void async() {
         LogWriter.info(this.getClass(),"Controller.async开始,线程名："+Thread.currentThread().getName());
-        asyncLogic.asyncMethod();
+        asyncLogica.asyncMethod();
         LogWriter.info(this.getClass(),"Controller.async结束,线程名："+Thread.currentThread().getName());
     }
 
     public void creat() {
         System.out.println("creat执行开始");
-        threadPoolExecutor.allowCoreThreadTimeOut(true);
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
             System.out.println("creat执行循环第:" + i);
-            threadPoolExecutor.execute(new CommonRunThread());
+            try {
+                threadPoolExecutor.execute(new CommonRunThread());
+            } catch (Exception e) {
+                LogWriter.error(this.getClass(),"",e);
+            }
         }
         System.out.println("creat执行结束");
     }

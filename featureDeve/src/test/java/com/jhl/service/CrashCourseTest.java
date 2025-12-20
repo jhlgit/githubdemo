@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
@@ -21,8 +22,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class CrashCourseTest {
     @Autowired
     CrashCourse crashCourse;
-//    @MockBean(reset= MockReset.NONE)
-            @Autowired
+    @MockBean()
     UserController userController;
     @Test
     public void test4genertatisonData() {
@@ -35,4 +35,5 @@ public class CrashCourseTest {
         LogWriter.info(this.getClass(),"CrashCourseTest.UserController:{},{}", SpringBeanUtils.getBean("userController").getClass().getName(),Integer.toHexString(SpringBeanUtils.getBean("userController").hashCode()));
         LogWriter.info(this.getClass(),"结束"+SpringBeanUtils.getApplicationContext());
     }
+
 }
