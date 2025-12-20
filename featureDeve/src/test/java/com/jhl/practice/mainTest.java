@@ -34,7 +34,6 @@ public class mainTest {
 
     public void  a(long num ){
         String s = String.valueOf(num);
-        int a[]
 //        Character.isLetter();
     }
 }
